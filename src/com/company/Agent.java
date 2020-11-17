@@ -1,13 +1,14 @@
 package com.company;
 
 import java.util.List;
+import java.util.Queue;
 
 public class Agent {
     private Environnement e;
     private int posX, posY;
     private boolean directionLibre;
     private int posXFinal, posYFinal;
-    private List<Message> listeMessage;
+    private Queue<Message> boiteAuxLettres;
 
 
     public Agent(Environnement e, int posX, int posY, int posXFinal, int posYFinal) {
