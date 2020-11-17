@@ -13,4 +13,11 @@ public class Environnement {
         this.nbAgents = nbAgents;
     }
 
+    public List<Agent> initialisationAgents(int nbAgents){
+        for (int i = 0; i <nbAgents; i++){
+
+        }
+        return listeAgents;
+    }
+
 }
