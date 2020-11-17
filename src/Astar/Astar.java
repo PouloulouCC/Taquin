@@ -21,10 +21,10 @@ public class Astar {
 //    }
 
     public void cheminPlusCourt(Environnement e, Agent a){
-        Noeud objectif = new Noeud(a.getPosXFinal(), a.getPosYFinal(), 0);
+        Noeud objectif = new Noeud(a.getPositionFinal(), 0);
         Queue<Noeud> closedList = new LinkedList<>();
         SortedSet<Noeud> openList = new TreeSet<>();
-        openList.add(new Noeud(a.getPosX(), a.getPosY(), objectif));
+        openList.add(new Noeud(a.getPositionIni(), objectif));
         Noeud u;
 
         while (!openList.isEmpty()){
@@ -43,6 +43,7 @@ public class Astar {
 
 
     public List<Noeud> getVoisins(Environnement e, Noeud n){
+
 
         return new ArrayList<>();
     }

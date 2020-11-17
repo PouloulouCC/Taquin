@@ -20,4 +20,8 @@ public class Environnement {
         return listeAgents;
     }
 
+    public Agent getContent(Position p){
+        return Agent[]
+    }
+
 }

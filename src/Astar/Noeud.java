@@ -1,20 +1,22 @@
 package Astar;
 
+import com.company.Position;
+
 import java.util.Map;
 
 public class Noeud implements Comparable{
     private int x, y;
     private int heuristique;
 
-    public Noeud(int x, int y, int h) {
-        this.x = x;
-        this.y = y;
+    public Noeud(Position p, int h) {
+        this.x = p.getX();
+        this.y = p.getY();
         this.heuristique = h;
     }
 
-    public Noeud(int x, int y, Noeud n){
-        this.x = x;
-        this.y = y;
+    public Noeud(Position p, Noeud n){
+        this.x = p.getX();
+        this.y = p.getY();
         heuristique = calcHeuristique(n);
     }
 
