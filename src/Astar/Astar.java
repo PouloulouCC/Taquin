@@ -3,10 +3,7 @@ package Astar;
 import com.company.Agent;
 import com.company.Environnement;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Astar {
     private Environnement e;
@@ -24,9 +21,30 @@ public class Astar {
 //    }
 
     public void cheminPlusCourt(Environnement e, Agent a){
+        Noeud objectif = new Noeud(a.getPosXFinal(), a.getPosYFinal(), 0);
         Queue<Noeud> closedList = new LinkedList<>();
         SortedSet<Noeud> openList = new TreeSet<>();
+        openList.add(new Noeud(a.getPosX(), a.getPosY(), objectif));
+        Noeud u;
+
+        while (!openList.isEmpty()){
+            u = openList.first();
+            if(u.compareTo(objectif) == 0){
+                reconstituerChemin(u);
+                return;
+            }
+
+        }
     }
 
+    public void reconstituerChemin(Noeud n){
+
+    }
+
+
+    public List<Noeud> getVoisins(Environnement e, Noeud n){
+
+        return new ArrayList<>();
+    }
 
 }

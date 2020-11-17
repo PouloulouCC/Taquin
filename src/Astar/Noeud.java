@@ -1,5 +1,7 @@
 package Astar;
 
+import java.util.Map;
+
 public class Noeud implements Comparable{
     private int x, y;
     private int heuristique;
@@ -10,8 +12,26 @@ public class Noeud implements Comparable{
         this.heuristique = h;
     }
 
+    public Noeud(int x, int y, Noeud n){
+        this.x = x;
+        this.y = y;
+        heuristique = calcHeuristique(n);
+    }
+
+    public int calcHeuristique(Noeud n){
+        return Math.abs(x - n.getX()) + Math.abs(y - n.getY());
+    }
+
     public int getHeuristique() {
         return heuristique;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     @Override

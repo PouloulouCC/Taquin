@@ -3,7 +3,7 @@ package com.company;
 import java.util.List;
 
 public class Environnement {
-    private String[][] plateau;
+    private Agent[][] plateau;
     private int n;
     private int nbAgents;
     private List<Agent> listeAgents;
@@ -12,4 +12,5 @@ public class Environnement {
         this.n = n;
         this.nbAgents = nbAgents;
     }
+
 }

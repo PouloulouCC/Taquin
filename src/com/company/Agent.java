@@ -18,4 +18,20 @@ public class Agent {
         this.posXFinal = posXFinal;
         this.posYFinal = posYFinal;
     }
+
+    public int getPosX() {
+        return posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+
+    public int getPosXFinal() {
+        return posXFinal;
+    }
+
+    public int getPosYFinal() {
+        return posYFinal;
+    }
 }
