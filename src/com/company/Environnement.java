@@ -12,4 +12,5 @@ public class Environnement {
         this.n = n;
         this.nbAgents = nbAgents;
     }
+
 }

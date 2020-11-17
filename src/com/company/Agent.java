@@ -18,4 +18,6 @@ public class Agent {
         this.posXFinal = posXFinal;
         this.posYFinal = posYFinal;
     }
+
+
 }
