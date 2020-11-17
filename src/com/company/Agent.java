@@ -5,19 +5,48 @@ import java.util.Queue;
 
 public class Agent {
     private Environnement e;
-    private int posX, posY;
+
+
+    private Position positionIni, positionFinal;
     private boolean directionLibre;
-    private int posXFinal, posYFinal;
     private Queue<Message> boiteAuxLettres;
 
 
-    public Agent(Environnement e, int posX, int posY, int posXFinal, int posYFinal) {
+    public Agent(Environnement e, Position positionIni, Position positionFinal) {
         this.e = e;
-        this.posX = posX;
-        this.posY = posY;
-        this.posXFinal = posXFinal;
-        this.posYFinal = posYFinal;
+        this.positionIni = positionIni;
+        this.positionFinal = positionFinal;
     }
 
+    public Position getPositionIni() {
+        return positionIni;
+    }
 
+    public void setPositionIni(Position positionIni) {
+        this.positionIni = positionIni;
+    }
+
+    public Position getPositionFinal() {
+        return positionFinal;
+    }
+
+    public void setPositionFinal(Position positionFinal) {
+        this.positionFinal = positionFinal;
+    }
+
+    public boolean isDirectionLibre() {
+        return directionLibre;
+    }
+
+    public void setDirectionLibre(boolean directionLibre) {
+        this.directionLibre = directionLibre;
+    }
+
+    public Queue<Message> getBoiteAuxLettres() {
+        return boiteAuxLettres;
+    }
+
+    public void setBoiteAuxLettres(Queue<Message> boiteAuxLettres) {
+        this.boiteAuxLettres = boiteAuxLettres;
+    }
 }
