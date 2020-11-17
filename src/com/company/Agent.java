@@ -49,20 +49,4 @@ public class Agent {
     public void setBoiteAuxLettres(Queue<Message> boiteAuxLettres) {
         this.boiteAuxLettres = boiteAuxLettres;
     }
-
-    public int getPosX() {
-        return posX;
-    }
-
-    public int getPosY() {
-        return posY;
-    }
-
-    public int getPosXFinal() {
-        return posXFinal;
-    }
-
-    public int getPosYFinal() {
-        return posYFinal;
-    }
 }
