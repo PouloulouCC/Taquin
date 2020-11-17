@@ -8,7 +8,7 @@ public class Message {
 
     private String performatif; //Request, Odre, Inform
 
-    private Date date; 
+    private Date date;
 
     private String action;
     private String parametre;
