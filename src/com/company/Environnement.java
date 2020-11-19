@@ -21,7 +21,7 @@ public class Environnement {
     }
 
     public Agent getContent(Position p){
-        return Agent[]
+        return plateau[p.getX()][p.getY()];
     }
 
 }
