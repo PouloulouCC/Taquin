@@ -18,6 +18,11 @@ public class Agent {
         this.positionFinal = positionFinal;
     }
 
+    //TODO LOUIS AVEC A*
+    public void seDeplacer(){
+
+    }
+
     public Position getPositionIni() {
         return positionIni;
     }
