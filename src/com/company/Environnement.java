@@ -21,7 +21,13 @@ public class Environnement {
     }
 
     public Agent getContent(Position p){
+        if(p.getX() < 0 || p.getX() >= n || p.getY() < 0 || p.getY() >= n){
+            return null;
+        }
         return plateau[p.getX()][p.getY()];
     }
 
+    public int getN() {
+        return n;
+    }
 }
