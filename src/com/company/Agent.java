@@ -8,7 +8,6 @@ public class Agent {
 
 
     private Position positionIni, positionFinal;
-    private boolean caseLibre;
     private Queue<Message> boiteAuxLettres;
 
 
@@ -63,13 +62,6 @@ public class Agent {
         this.positionFinal = positionFinal;
     }
 
-    public boolean getCaseLibre() {
-        return caseLibre;
-    }
-
-    public void setDirectionLibre(boolean caseLibre) {
-        this.caseLibre = caseLibre;
-    }
 
     //Vérifie si y'a un agent ou pas sur la position voulue
     public boolean isCaseLibre(Environnement e,Position p){
