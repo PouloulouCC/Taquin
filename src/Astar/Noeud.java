@@ -3,24 +3,34 @@ package Astar;
 import com.company.Position;
 
 import java.util.Map;
+import java.util.Objects;
 
 public class Noeud implements Comparable{
     private int x, y;
     private int heuristique;
+    private int cout;
+    private int distance;
+    private Noeud parent;
 
-    public Noeud(Position p, int h) {
+    public Noeud(Position p, int d, int c) {
         this.x = p.getX();
         this.y = p.getY();
-        this.heuristique = h;
+        this.distance = d;
+        this.heuristique = d + c;
+        this.cout = c;
+        parent = null;
     }
 
-    public Noeud(Position p, Noeud n){
+    public Noeud(Position p, Noeud n, int c){
         this.x = p.getX();
         this.y = p.getY();
-        heuristique = calcHeuristique(n);
+        distance = calcDistance(n);
+        heuristique = distance + c;
+        cout = c;
+        parent = null;
     }
 
-    public int calcHeuristique(Noeud n){
+    public int calcDistance(Noeud n){
         return Math.abs(x - n.getX()) + Math.abs(y - n.getY());
     }
 
@@ -36,6 +46,26 @@ public class Noeud implements Comparable{
         return y;
     }
 
+    public int getCout() {
+        return cout;
+    }
+
+    public Noeud getParent() {
+        return parent;
+    }
+
+    public void setCout(int cout) {
+        this.cout = cout;
+    }
+
+    public void setHeuristique(int heuristique) {
+        this.heuristique = heuristique;
+    }
+
+    public void setParent(Noeud parent) {
+        this.parent = parent;
+    }
+
     @Override
     public int compareTo(Object o) {
         Noeud n = (Noeud)o;
@@ -46,5 +76,19 @@ public class Noeud implements Comparable{
         }else{
             return -1;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Noeud noeud = (Noeud) o;
+        return x == noeud.x &&
+                y == noeud.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, heuristique, cout);
     }
 }
