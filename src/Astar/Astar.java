@@ -1,6 +1,7 @@
 package Astar;
 
 import com.company.Agent;
+import com.company.Direction;
 import com.company.Environnement;
 import com.company.Position;
 
@@ -9,10 +10,6 @@ import java.util.*;
 public class Astar {
     private Environnement e;
     private Noeud objectif;
-
-    private Agent a;
-
-
 
 //    public int compare2Noeuds(Noeud n1, Noeud n2){
 //        if(n1.getHeuristique() < n2.getHeuristique()){
@@ -24,20 +21,19 @@ public class Astar {
 //        }
 //    }
 
-    public void cheminPlusCourt(Environnement e, Agent a){
+    public Position cheminPlusCourt(Environnement e, Agent a){
         this.e = e;
         objectif = new Noeud(a.getPositionFinal(), 0, 0);
 
         Queue<Noeud> closedList = new LinkedList<>();
         SortedSet<Noeud> openList = new TreeSet<>();
-        openList.add(new Noeud(a.getPositionIni(), objectif, 0));
+        openList.add(new Noeud(a.getPositionCurrent(), objectif, 0));
         Noeud u;
 
         while (!openList.isEmpty()){
             u = openList.first();
             if(u.compareTo(objectif) == 0){
-                reconstituerChemin(u);
-                return;
+                return reconstituerChemin(u);
             }
             for(Noeud v : getVoisins(u)){
                 if(v != null){
@@ -50,18 +46,20 @@ public class Astar {
                 }
             }
             closedList.add(u);
-
         }
+        return null;
     }
 
-    public Noeud reconstituerChemin(Noeud n){
+    public Position reconstituerChemin(Noeud n){
         Noeud suivant = n;
         while(n.getParent() != null){
             suivant = n;
             n = n.getParent();
         }
-        return suivant;
+        return new Position(suivant.getX(), suivant.getY());
     }
+
+
 
     public boolean existInWithLowerCost(SortedSet<Noeud> openList, Noeud n){
         if(openList.contains(n)){

@@ -8,6 +8,7 @@ public class Environnement {
     private int nbAgents;
     private List<Agent> listeAgents;
 
+
     public Environnement(int n, int nbAgents){
         this.n = n;
         this.nbAgents = nbAgents;
@@ -29,5 +30,39 @@ public class Environnement {
 
     public int getN() {
         return n;
+    }
+
+    public boolean isTaquinOk(){
+        for(Agent a: listeAgents){
+            if(!a.isPlacedGood()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void deplacer(Agent a, Direction d){
+        Position p = a.getPositionCurrent();
+
+        plateau[p.getX()][p.getY()] = null;
+
+        Position newP = calcPosition(p,d);
+
+        a.setPositionCurrent(newP);
+
+        plateau[newP.getX()][newP.getY()] = a;
+    }
+
+    public Position calcPosition(Position p, Direction d){
+        switch (d){
+            case E:
+                return new Position(p.getX(), p.getY()+1);
+            case O:
+                return new Position(p.getX(), p.getY()-1);
+            case N:
+                return new Position(p.getX()-1, p.getY());
+            default:
+                return new Position(p.getX()+1, p.getY());
+        }
     }
 }

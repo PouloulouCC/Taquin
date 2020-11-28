@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Objects;
+
 public class Position {
 
     private int x, y;
@@ -24,5 +26,17 @@ public class Position {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        Position position = (Position) o;
+        return x == position.x &&
+                y == position.y;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }

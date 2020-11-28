@@ -1,19 +1,24 @@
 package com.company;
 
-import java.util.List;
+import Astar.Astar;
+
+import java.security.PrivateKey;
+import java.util.Objects;
 import java.util.Queue;
 
-public class Agent {
+public class Agent extends Thread{
     private Environnement e;
+    private int id;
 
+    private Direction d;
 
-    private Position positionIni, positionFinal;
+    private Position positionCurrent, positionFinal;
     private Queue<Message> boiteAuxLettres;
 
 
-    public Agent(Environnement e, Position positionIni, Position positionFinal) {
+    public Agent(Environnement e, Position positionCurrent, Position positionFinal) {
         this.e = e;
-        this.positionIni = positionIni;
+        this.positionCurrent = positionCurrent;
         this.positionFinal = positionFinal;
     }
 
@@ -22,36 +27,67 @@ public class Agent {
     on se déplace vers la case choisie
     */
     public void seDeplacer(){
-
-
+        e.deplacer(this, d);
     }
 
     //Observe l'environnement (en haut, à droite, à gauche,
-    public void Observer(){
+    public void observer(){
 
     }
 
     //TODO LOUIS AVEC A*
     // Utilisation de A* pour savoir quel est le meilleur chemin pour aller à la position final
-    public void Raisonner(){
+    public Direction raisonner(){
+        Astar as = new Astar();
+        Position nextPosition = as.cheminPlusCourt(e, this);
+        if(nextPosition != null){
+            return findDirection(nextPosition);
+        }
+        return null;
+    }
+
+    public void decider(){
+        if(d != null){
+            seDeplacer();
+        }
+    }
+
+    public void appliquer(){
 
     }
 
-    public void Decider(){
-
+    @Override
+    public void run() {
+        while(!e.isTaquinOk()){
+            d = null;
+            d = raisonner();
+            decider();
+        }
     }
 
-    public void Appliquer(){
-
+    public Direction findDirection(Position p){
+        if(p.equals(positionCurrent)){
+            return null;
+        }
+        if(p.getX() < positionCurrent.getX()){
+            return Direction.N;
+        }
+        if(p.getX() > positionCurrent.getX()){
+            return Direction.S;
+        }
+        if(p.getY() < positionCurrent.getY()){
+            return Direction.O;
+        }else{
+            return Direction.E;
+        }
     }
 
-
-    public Position getPositionIni() {
-        return positionIni;
+    public Position getPositionCurrent() {
+        return positionCurrent;
     }
 
-    public void setPositionIni(Position positionIni) {
-        this.positionIni = positionIni;
+    public void setPositionCurrent(Position positionCurrent) {
+        this.positionCurrent = positionCurrent;
     }
 
     public Position getPositionFinal() {
@@ -78,11 +114,28 @@ public class Agent {
         }
     }
 
+    public boolean isPlacedGood(){
+        return positionCurrent.equals(positionFinal);
+    }
+
     public Queue<Message> getBoiteAuxLettres() {
         return boiteAuxLettres;
     }
 
     public void setBoiteAuxLettres(Queue<Message> boiteAuxLettres) {
         this.boiteAuxLettres = boiteAuxLettres;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Agent agent = (Agent) o;
+        return id == agent.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
