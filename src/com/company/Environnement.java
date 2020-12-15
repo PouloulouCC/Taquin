@@ -53,6 +53,7 @@ public class Environnement {
         plateau[newP.getX()][newP.getY()] = a;
     }
 
+    //Détermine la position de l'agent apres déplacement dans la direction
     public Position calcPosition(Position p, Direction d){
         switch (d){
             case E:

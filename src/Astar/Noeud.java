@@ -30,6 +30,14 @@ public class Noeud implements Comparable{
         parent = null;
     }
 
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
     public int calcDistance(Noeud n){
         return Math.abs(x - n.getX()) + Math.abs(y - n.getY());
     }
@@ -64,6 +72,10 @@ public class Noeud implements Comparable{
 
     public void setParent(Noeud parent) {
         this.parent = parent;
+    }
+
+    public Position getPosition(){
+        return new Position(x, y);
     }
 
     @Override

@@ -39,7 +39,8 @@ public class Astar {
                 if(v != null){
                     if(!(closedList.contains(v) || existInWithLowerCost(openList, v))){
                         v.setCout(u.getCout() + 1);
-                        v.setHeuristique(v.getCout() + v.calcDistance(objectif));
+                        v.setDistance(v.calcDistance(objectif));
+                        v.setHeuristique(v.getCout() + v.getDistance());
                         openList.add(v);
                         v.setParent(u);
                     }
@@ -47,9 +48,23 @@ public class Astar {
             }
             closedList.add(u);
         }
-        return null;
+        return reconstituerChemin(closestReachablePosition(closedList));
     }
 
+    //Si l'objectif est inatégnable, retourne le Noeud atégnable le plus proche de l'objectif.
+    public Noeud closestReachablePosition(Queue<Noeud> closeList){
+        Noeud noeudMin = closeList.peek();
+        int min = noeudMin.getDistance();
+        for(Noeud n : closeList){
+            if(n.getDistance() < min){
+                noeudMin = n;
+                min = n.getDistance();
+            }
+        }
+        return noeudMin;
+    }
+
+    //reconsitue le chemin de n au dernier parent connu, retourne la premier position pour l'atteindre
     public Position reconstituerChemin(Noeud n){
         Noeud suivant = n;
         while(n.getParent() != null){
